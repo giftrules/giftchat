@@ -24,7 +24,7 @@
 
     {% for item in items.items %}
     <div class="col" style="background-color: white;">
-      <img src="{{ url_for('get_image', filename=item.product_picture|replace('./media/', '') ) }}" alt="" style="height: 202px; width: 180px; border-radius: 10px;">
+      <img src="{{ url_for('get_image', filename=item.product_picture|replace('./media/', '') ) }}" alt="{{ item.product_name }}" style="height: 202px; width: 180px; border-radius: 10px;">
       <div class="row" style="margin-top: 5px;">
         <h6 style="color: gray;">{{ item.product_name }}</h6>
       </div>
