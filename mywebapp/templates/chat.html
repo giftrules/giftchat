@@ -48,7 +48,7 @@
             </div>
 
             <form id="messageArea" class="input-group mb-1">
-              <input type="text" id="text_1" class="type_msg" name="msg" value="The product I want to check for is " style="width: 200px;" readonly hidden/>
+              <input type="text" id="text_1" class="type_msg" name="msg" value="The product I want to check for is " style="width: 250px;" readonly hidden/>
               <input type="text" id="text" name="msg" placeholder="Type your message here…" autocomplete="off" class="form-control type_msg bright-placeholder" required />
               <input type="hidden" id="user_id" name="user_id" value="{{ current_user.customer_id }}">
               <input type="hidden" id="usertype" name="usertype" value="{{ current_user.usertype }}">
@@ -181,7 +181,7 @@
       const botHtml = `
         <div class="d-flex justify-content-start mb-4">
           <div class="img_cont_msg">
-            <img src="../static/images/giftcatoon.png" class="rounded-circle user_img_msg">
+              <img src="https://raw.githubusercontent.com/giftrules/giftchatbot/main/mywebapp/static/images/giftcatoon.png" class="rounded-circle user_img_msg">
           </div>
           <div class="msg_cotainer">
             ${data}
