@@ -7,11 +7,14 @@ views = Blueprint('views', __name__)
 
 
 @views.route('/')
-def home():
+@views.route('/page/<int:page>')
+def home(page=1):
+    per_page = 5 # or any number you prefer
+    print("Home route loaded!")
+    items = Product.query.paginate(page=page, per_page=per_page)
 
-    items = Product.query.all()
     cart_items = []
-    cart =[]
+    cart = []
     if current_user.is_authenticated:
         cart = Cart.query.filter_by(customer_id=current_user.customer_id).first()
         if cart:

@@ -1,7 +1,7 @@
 import json
 import os
 import requests
-from flask import request, jsonify
+from flask import request, jsonify,abort
 from flask import send_from_directory
 from mywebapp import create_app
 from mywebapp.models import *
@@ -17,6 +17,12 @@ app = create_app()
 #@app.route('/')
 #def index():
  #  return render_template('index.html')
+
+
+
+@app.route('/media/<path:filename>')
+def get_image(filename):
+    return send_from_directory('media', filename)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -119,10 +125,15 @@ def add_cart_item():
         return jsonify({'message': 'Internal server error'}), 500
 
 
-
 @app.route('/download/manual')
 def download_manual():
-    return send_from_directory('documents', 'Chatbot_User_Manual.docx', as_attachment=True)
+    directory = os.path.join(os.getcwd(), 'documents')
+    filename = 'Chatbot_User_Manual.docx'
+
+    if not os.path.isfile(os.path.join(directory, filename)):
+        abort(404)
+
+    return send_from_directory(directory=directory, path=filename, as_attachment=True)
 
 # ---------------------- Review Endpoint ----------------------
 @app.route('/chatbotreviews', methods=['POST'])
